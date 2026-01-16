@@ -1,0 +1,329 @@
+# SIMPLIFIED PIPELINE DESIGNER FOR BEGINNERS
+print("="*60)
+print("OIL & GAS PIPELINE DESIGN TRAINING TOOL")
+print("For Young Engineers - No Experience Needed")
+print("="*60)
+
+def simple_pipeline_design():
+    """Very simple version for learning"""
+    
+    print("\nWelcome! Let's design a simple pipeline together.")
+    print("This tool helps you learn step by step.")
+    
+    # Get basic inputs
+    print("\nSTEP 1: BASIC INFORMATION")
+    print("-"*40)
+    project_name = input("Project Name (e.g., 'Desert Pipeline'): ")
+    pipeline_length = float(input("Pipeline Length (km, e.g., 25): "))
+    pipe_diameter = float(input("Pipe Diameter (mm, e.g., 200): "))
+    flow_rate = float(input("Flow Rate (m³/hour, e.g., 100): "))
+    
+    print("\nSTEP 2: DESIGN CALCULATIONS")
+    print("-"*40)
+    
+    # Simple calculations (for learning)
+    # 1. Convert diameter to inches (for oilfield units)
+    diameter_inches = pipe_diameter / 25.4
+    print(f"1. Pipe Diameter: {pipe_diameter} mm = {diameter_inches:.1f} inches")
+    
+    # 2. Calculate cross-sectional area
+    radius_mm = pipe_diameter / 2
+    area_mm2 = 3.1416 * radius_mm * radius_mm
+    area_m2 = area_mm2 / 1000000
+    print(f"2. Cross-sectional Area: {area_m2:.4f} m²")
+    
+    # 3. Calculate flow velocity
+    # Flow rate m³/hr to m³/sec
+    flow_m3_s = flow_rate / 3600
+    velocity = flow_m3_s / area_m2
+    print(f"3. Flow Velocity: {velocity:.2f} m/s")
+    
+    # 4. Check velocity limits
+    if velocity < 1.0:
+        print("   ✓ Velocity is good (recommended: 1-3 m/s for liquids)")
+    elif velocity > 3.0:
+        print("   ⚠ Velocity is high - consider larger pipe")
+    else:
+        print("   ✓ Velocity is in optimal range")
+    
+    print("\nSTEP 3: PRESSURE DROP ESTIMATION")
+    print("-"*40)
+    
+    # Simple pressure drop formula for learning
+    # ΔP = (f * L * ρ * v²) / (2 * D)
+    # Using simplified formula for training
+    density = 850  # kg/m³ typical for oil
+    friction_factor = 0.02  # approximate for steel
+    
+    pressure_drop = (friction_factor * pipeline_length * 1000 * density * velocity * velocity) / (2 * (pipe_diameter/1000))
+    pressure_drop_bar = pressure_drop / 100000
+    
+    print(f"Estimated Pressure Drop: {pressure_drop_bar:.2f} bar")
+    print(f"Pressure Drop per km: {pressure_drop_bar/pipeline_length:.3f} bar/km")
+    
+    # Simple recommendations
+    print("\nSTEP 4: DESIGN CHECKLIST")
+    print("-"*40)
+    print("✓ 1. Pipeline length entered: {:.1f} km".format(pipeline_length))
+    print("✓ 2. Pipe diameter: {:.1f} mm".format(pipe_diameter))
+    print("✓ 3. Flow rate: {:.1f} m³/hr".format(flow_rate))
+    print("✓ 4. Flow velocity: {:.2f} m/s".format(velocity))
+    
+    # Buried pipeline considerations
+    print("\nSTEP 5: DESERT PIPELINE CONSIDERATIONS")
+    print("-"*40)
+    print("For desert environment remember:")
+    print("1. Corrosion: High - use FBE coating")
+    print("2. Temperature: Large variations - include expansion loops")
+    print("3. Sand: Risk of abrasion - use thicker wall pipe")
+    print("4. Nalla crossings: Minimum 1.2m cover required")
+    print("5. Road crossings: Minimum 1.5m cover + casing pipe")
+    
+    print("\n" + "="*60)
+    print("DESIGN SUMMARY FOR: {}".format(project_name))
+    print("="*60)
+    print("Pipeline Length: {:.1f} km".format(pipeline_length))
+    print("Pipe Diameter: {:.1f} mm ({:.1f} inches)".format(pipe_diameter, diameter_inches))
+    print("Flow Rate: {:.1f} m³/hr".format(flow_rate))
+    print("Flow Velocity: {:.2f} m/s".format(velocity))
+    print("Pressure Drop: {:.2f} bar total".format(pressure_drop_bar))
+    print("Pressure Drop/km: {:.3f} bar/km".format(pressure_drop_bar/pipeline_length))
+    
+    print("\nRECOMMENDATIONS:")
+    if pipe_diameter < 150:
+        print("1. Consider wall thickness: 4.0-5.0 mm minimum")
+    elif pipe_diameter < 300:
+        print("1. Consider wall thickness: 5.6-6.3 mm minimum")
+    else:
+        print("1. Consider wall thickness: 7.1-8.0 mm minimum")
+    
+    print("2. Material: API 5L Grade B or X42 for desert")
+    print("3. Coating: Fusion Bonded Epoxy (FBE)")
+    print("4. Testing: Hydrotest at 1.5 x design pressure")
+    
+    print("\n" + "="*60)
+    print("Note: This is a TRAINING TOOL only.")
+    print("Always verify with senior engineers and proper standards.")
+    print("="*60)
+    
+    # Save results
+    save_choice = input("\nSave results to file? (y/n): ")
+    if save_choice.lower() == 'y':
+        filename = f"{project_name.replace(' ', '_')}_design.txt"
+        with open(filename, 'w') as f:
+            f.write(f"Pipeline Design Report\n")
+            f.write(f"Project: {project_name}\n")
+            f.write(f"Length: {pipeline_length} km\n")
+            f.write(f"Diameter: {pipe_diameter} mm\n")
+            f.write(f"Flow Rate: {flow_rate} m³/hr\n")
+            f.write(f"Velocity: {velocity:.2f} m/s\n")
+            f.write(f"Pressure Drop: {pressure_drop_bar:.2f} bar\n")
+        print(f"Report saved as: {filename}")
+    
+    print("\nWould you like to:")
+    print("1. Run another design")
+    print("2. Exit")
+    
+    choice = input("Enter choice (1 or 2): ")
+    if choice == '1':
+        simple_pipeline_design()
+    else:
+        print("\nThank you for using the Pipeline Design Learning Tool!")
+        print("Remember: Always cross-check with ASME B31.4 standards.")
+
+def pipeline_crossing_calculator():
+    """Special calculator for crossings"""
+    print("\n" + "="*60)
+    print("PIPELINE CROSSING CALCULATOR")
+    print("="*60)
+    
+    print("\nTypes of Crossings:")
+    print("1. Road Crossing")
+    print("2. Nalla (Dry River Bed) Crossing")
+    print("3. Railway Crossing")
+    print("4. Canal Crossing")
+    
+    crossing_type = input("\nSelect crossing type (1-4): ")
+    
+    if crossing_type == '1':
+        print("\nROAD CROSSING REQUIREMENTS:")
+        print("- Minimum burial depth: 1.2 meters")
+        print("- Casing pipe required for heavy traffic")
+        print("- Warning tape 300mm above pipe")
+        width = float(input("Road width (meters): "))
+        print(f"\nRecommended: Use {width + 2} meter long casing")
+        
+    elif crossing_type == '2':
+        print("\nNALLA CROSSING REQUIREMENTS:")
+        print("- Minimum burial depth: 1.5 meters")
+        print("- Concrete weight coating may be needed")
+        print("- Consider scour protection")
+        width = float(input("Nalla width (meters): "))
+        print(f"\nRecommend: Extra 2m burial depth for scour protection")
+        
+    elif crossing_type == '3':
+        print("\nRAILWAY CROSSING REQUIREMENTS:")
+        print("- Minimum burial depth: 1.8 meters")
+        print("- Steel casing mandatory")
+        print("- Special permits required")
+        
+    else:
+        print("\nCANAL CROSSING REQUIREMENTS:")
+        print("- Minimum burial depth: 2.0 meters")
+        print("- Heavy weight coating needed")
+        print("- Anchor blocks required")
+    
+    print("\n" + "="*60)
+    print("IMPORTANT: Always check local regulations!")
+    print("="*60)
+
+def main_menu():
+    """Main menu for the application"""
+    while True:
+        print("\n" + "="*60)
+        print("MAIN MENU - PIPELINE DESIGN LEARNING TOOL")
+        print("="*60)
+        print("\nChoose what you want to learn:")
+        print("1. Simple Pipeline Design (Start Here!)")
+        print("2. Crossing Calculator")
+        print("3. Wall Thickness Calculator")
+        print("4. Pressure Drop Calculator")
+        print("5. Exit")
+        
+        choice = input("\nEnter your choice (1-5): ")
+        
+        if choice == '1':
+            simple_pipeline_design()
+        elif choice == '2':
+            pipeline_crossing_calculator()
+        elif choice == '3':
+            wall_thickness_calculator()
+        elif choice == '4':
+            pressure_drop_calculator()
+        elif choice == '5':
+            print("\nThank you for learning pipeline design!")
+            print("Always remember: Safety first, calculations second.")
+            break
+        else:
+            print("Please enter 1, 2, 3, 4, or 5")
+
+def wall_thickness_calculator():
+    """Calculate minimum wall thickness"""
+    print("\n" + "="*60)
+    print("WALL THICKNESS CALCULATOR")
+    print("="*60)
+    
+    print("\nBased on ASME B31.4 simplified formula:")
+    print("t = (P × D) / (2 × S × F) + CA")
+    print("Where:")
+    print("t = Wall thickness (mm)")
+    print("P = Design pressure (bar)")
+    print("D = Pipe diameter (mm)")
+    print("S = Material strength (MPa)")
+    print("F = Design factor (0.72 for desert)")
+    print("CA = Corrosion allowance (mm)")
+    
+    try:
+        P = float(input("\nDesign Pressure (bar): "))
+        D = float(input("Pipe Diameter (mm): "))
+        S = float(input("Material Strength (MPa) [X42=290, X52=360, X65=450]: ") or "290")
+        
+        # Convert pressure from bar to MPa
+        P_mpa = P * 0.1
+        F = 0.72  # Design factor for desert
+        
+        # Calculate thickness
+        t_calc = (P_mpa * (D/1000)) / (2 * S * F)
+        t_mm = t_calc * 1000
+        
+        # Add corrosion allowance
+        CA = float(input("Corrosion Allowance (mm, typical 1.5): ") or "1.5")
+        t_total = t_mm + CA
+        
+        # Add manufacturing tolerance (12.5%)
+        t_final = t_total * 1.125
+        
+        print(f"\nCALCULATION RESULTS:")
+        print(f"Calculated thickness: {t_mm:.2f} mm")
+        print(f"Plus corrosion allowance: {t_total:.2f} mm")
+        print(f"With 12.5% tolerance: {t_final:.2f} mm")
+        
+        # Standard thicknesses
+        standard = [3.2, 4.0, 4.5, 5.0, 5.6, 6.3, 7.1, 8.0, 9.0, 10.0, 11.0, 12.5]
+        selected = min([t for t in standard if t >= t_final], default=12.5)
+        
+        print(f"\nSELECT from standard sizes: {selected} mm")
+        print(f"Schedule: {get_schedule(selected, D)}")
+        
+    except:
+        print("Please enter numbers only")
+
+def get_schedule(thickness, diameter):
+    """Get pipe schedule"""
+    ratio = thickness / diameter * 1000
+    if ratio < 5: return "Schedule 20"
+    elif ratio < 10: return "Schedule 40"
+    elif ratio < 20: return "Schedule 80"
+    else: return "Schedule 160"
+
+def pressure_drop_calculator():
+    """Calculate pressure drop"""
+    print("\n" + "="*60)
+    print("PRESSURE DROP CALCULATOR")
+    print("="*60)
+    
+    print("\nUsing Darcy-Weisbach equation for liquids")
+    
+    try:
+        L = float(input("Pipeline Length (km): "))
+        D = float(input("Pipe Diameter (mm): "))
+        Q = float(input("Flow Rate (m³/hour): "))
+        rho = float(input("Fluid Density (kg/m³) [Oil=850, Water=1000]: ") or "850")
+        mu = float(input("Viscosity (cP) [Crude oil=1-100]: ") or "10")
+        
+        # Convert units
+        L_m = L * 1000
+        D_m = D / 1000
+        Q_m3s = Q / 3600
+        mu_Pas = mu / 1000
+        
+        # Calculate velocity
+        A = 3.1416 * (D_m/2) ** 2
+        v = Q_m3s / A
+        
+        # Reynolds number
+        Re = (rho * v * D_m) / mu_Pas
+        
+        # Friction factor (simplified)
+        if Re < 2000:
+            f = 64 / Re
+            regime = "Laminar"
+        else:
+            # Simplified for training
+            f = 0.02
+            regime = "Turbulent"
+        
+        # Pressure drop
+        deltaP = (f * L_m * rho * v * v) / (2 * D_m)
+        deltaP_bar = deltaP / 100000
+        
+        print(f"\nRESULTS:")
+        print(f"Flow Velocity: {v:.2f} m/s")
+        print(f"Reynolds Number: {Re:,.0f}")
+        print(f"Flow Regime: {regime}")
+        print(f"Friction Factor: {f:.4f}")
+        print(f"Pressure Drop: {deltaP_bar:.2f} bar")
+        print(f"Pressure Drop per km: {deltaP_bar/L:.3f} bar/km")
+        
+        # Pump power
+        if deltaP_bar > 0:
+            power_kw = (Q_m3s * deltaP * 100000) / 1000
+            print(f"Pump Power Required: {power_kw:.1f} kW")
+        
+    except:
+        print("Please enter valid numbers")
+
+# Start the application
+if __name__ == "__main__":
+    print("\nLoading Pipeline Design Learning Tool...")
+    main_menu()
