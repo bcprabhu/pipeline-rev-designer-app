@@ -1,7 +1,11 @@
 # Pipeline Design Learning Tool
 
 **Created by:** B.C. Prabhakar  
-**Title:** Freelance Oil and Gas Pipeline Engineering Consultant  
+**Title:** Freelance Oil and Gas Pipeline Engineering Consultant 
+![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)
+![License](https://img.shields.io/badge/license-Educational%20Use-green)
+![Status](https://img.shields.io/badge/status-Professional%20Training%20Tool-orange)
+![Consultant](https://img.shields.io/badge/consultant-B.C.%20Prabhakar-red)
 **Email:** prabhubc@gmail.com  
 **Purpose:** Training tool for young pipeline engineers
 
